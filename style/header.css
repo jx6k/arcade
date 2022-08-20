@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #303030;
+    padding: .75rem;
+    height: 4rem;
+}
+
+a {
+    height: 100%;
+}
+
+.header__img {
+    height: 100%;
+}
+
+.header__text {
+    font-family: "Outfit", sans-serif;
+    font-weight: 900;
+    color: #ffffff;
+    margin-right: 1rem;
+}

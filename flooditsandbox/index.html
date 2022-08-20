@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood It</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;900&display=swap" rel="stylesheet">
+ 
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../style/header.css">
+</head>
+<body>
+    <header class="header">
+        <a href="../"><img src="../images/face.png" alt="" class="header__img"></a>
+        <h1 class="header__text">Flood It Sandbox</h1>
+    </header>
+
+    <canvas></canvas>
+
+    <div class="game">
+        <div class="container">
+            <label for="board-size">Board Size:</label>
+            <select id="board-size" class="board-size"><option value="4">4x4</option><option value="6">6x6</option><option value="8">8x8</option><option value="12">12x12</option><option value="16" selected="selected">16x16</option><option value="24">24x24</option><option value="32">32x32</option><option value="48">48x48</option><option value="64">64x64</option></select>
+        </div>
+
+        <div class="container">
+            <label for="color-count">Color Count:</label>
+            <select id="color-count" class="color-count"><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6" selected="selected">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select>
+        </div>
+
+        <div class="container">
+            <button id="new-game">New Game</button>
+        </div>
+
+        <div class="container">
+            <label for="moves">Moves:</label>
+            <p id="moves">0</p>
+        </div>
+    </div>
+    <script src="./script.js" type="module"></script>
+</body>
+</html>
