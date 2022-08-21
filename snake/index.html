@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flood It</title>
+    <title>Snake</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,26 +16,26 @@
 <body>
     <header class="header">
         <a href="../"><img src="../images/face.png" alt="" class="header__img"></a>
-        <h1 class="header__text">Flood It Survival</h1>
+        <h1 class="header__text">Arcade</h1>
     </header>
 
     <canvas></canvas>
 
     <div class="game">
+        <div>
+            <p>press p to pause</p>
+        </div>
+        
         <div class="container">
-            <label for="level">level: </label>
-            <p id="level"></p>
+            <button id="restart">press r or click here to restart</button>
         </div>
 
         <div class="container">
-            <p id="dialogue" class="dialogue"></p>
-        </div>
-
-        <div class="container">
-            <label for="moves">moves remaining:</label>
-            <p id="moves"></p>
+            <label for="score">score: </label>
+            <p id="score">0</p>
         </div>
     </div>
+
     <script src="./script.js" type="module"></script>
 </body>
 </html>

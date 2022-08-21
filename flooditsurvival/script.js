@@ -95,11 +95,11 @@ canvas.addEventListener("click", (event) => {
             startLevel(levels[currentLevel])
         }
         else {
-            dialogueParagraph.innerText = "You win! Click to play again"
+            dialogueParagraph.innerText = "you win! click to play again"
         }
     }
     else if (movesAllowed == 0) {
-        dialogueParagraph.innerText = "You lose. Click to restart"
+        dialogueParagraph.innerText = "you lose. click to restart"
     }
 })
 
