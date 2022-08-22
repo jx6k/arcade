@@ -10,8 +10,8 @@ const context = canvas.getContext("2d")
 canvas.width = 512
 canvas.height = 512
 
-const foodColor = "#ff0000"
-const snakeColor = "#0080ff"
+const foodColor = "#00FF59"
+const snakeColor = "#FF00A6"
 const backgroundColor = "#303030"
 
 const gridDimensions = { x: 24, y: 24 }
@@ -80,6 +80,8 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("resize", () => {
     sizeCanvas()
 })
+
+restartButton.addEventListener("click", restart)
 
 setInterval(() => {
     if (paused == false) {
