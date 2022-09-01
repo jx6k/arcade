@@ -1,13 +1,23 @@
 body {
     margin: 0;
+    font-family: consolas, monospace;
     background-color: #202020;
 }
 
+header {
+    background-color: #101010;
+    color: #ffffff;
+}
+
+.header__item {
+    margin: 0;
+    padding: .75rem 1.25rem;
+    font-size: 1rem;
+}
+
 canvas {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: block;
+    margin: 4rem auto;
 }
 
 .overlay {
@@ -26,7 +36,6 @@ canvas {
     transform: translate(-50%, -50%);
 
     text-align: center;
-    font-family: consolas, monospace;
     font-size: 150%;
 }
 

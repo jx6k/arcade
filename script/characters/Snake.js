@@ -13,6 +13,7 @@ class Snake {
         this.velocity = { x: 1, y: 0 }
         this.direction = "right"
 
+        this.score = 0
         this.dead = false
 
         this.color = "#ffffff"
@@ -43,7 +44,10 @@ class Snake {
         const foodInSnake = food.checkEaten(this)
 
         if (foodInSnake == false) { this.positions.shift() }
-        else { food.teleport(this) }
+        else {
+            this.score += 1
+            food.teleport(this)
+        }
 
         const target = {
             x: newPosition.x,

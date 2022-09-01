@@ -13,10 +13,12 @@ import SnakeFood from "../script/characters/snakeFood.js"
  * DOCUMENT SETUP
  */
 const resize = () => {
-    const size = Math.min(window.innerWidth * 0.85, window.innerHeight * 0.85)
+    const size = Math.min(window.innerWidth * 0.75, window.innerHeight * 0.75)
     canvas.width = size
     canvas.height = size
 }
+
+const score = document.querySelector(".header--score")
 
 const info = {
     overlay: document.querySelector(".overlay"),
@@ -104,11 +106,11 @@ const tick = 100
 setInterval(() => {
     if (paused == false && snake.dead == false) { snake.updatePosition(snakeFood) }
     
-    if (snake.dead == true && info.title.innerText != "you died") {
-        info.death()
-    }
-    else if (snake.dead == false && info.title.innerText == "you died") {
-        info.empty()
+    if (snake.dead == true && info.title.innerText != "you died") { info.death() }
+    else if (snake.dead == false && info.title.innerText == "you died") { info.empty() }
+
+    if (score.innerText != "score: " + snake.score) {
+        score.innerText = "score: " + snake.score
     }
 
     drawBackground(canvas, context, "#101010")
