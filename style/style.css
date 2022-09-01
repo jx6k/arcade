@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    background-color: #202020;
+}
+
+canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    font-family: consolas, monospace;
+    font-size: 150%;
+}
+
+.info__title, .info__subtitle {
+    margin: 1rem;
+}
+
+.info__title { color: #ffd000 }
+.info__subtitle { color: #ffffff }

@@ -1,90 +1,117 @@
-import { Food, Snake } from "./script/classes.js"
-import { background } from "./script/functions.js"
+/**
+ * IMPORTS
+ */
+import drawBackground from "../script/art/drawBackground.js"
 
-const restartButton = document.querySelector("button#restart")
-const scoreParagraph = document.querySelector("p#score")
+import ArrowKeys from "../script/elementals/ArrowKeys.js"
+
+import Snake from "../script/characters/Snake.js"
+import SnakeFood from "../script/characters/snakeFood.js"
+
+
+/**
+ * DOCUMENT SETUP
+ */
+const resize = () => {
+    const size = Math.min(window.innerWidth * 0.85, window.innerHeight * 0.85)
+    canvas.width = size
+    canvas.height = size
+}
+
+const info = {
+    overlay: document.querySelector(".overlay"),
+    title: document.querySelector("h1.info__title"),
+    subtitle: document.querySelector("h2.info__subtitle"),
+    pause: () => {
+        info.title.innerText = "paused"
+        info.subtitle.innerText = "press space to unpause"
+        info.overlay.style.backgroundColor = "#101010c0"
+    },
+    death: () => {
+        info.title.innerText = "you died"
+        info.subtitle.innerText = "press any key to respawn"
+        info.overlay.style.backgroundColor = "#101010c0"
+    },
+    empty: () => {
+        info.title.innerText = ""
+        info.subtitle.innerText = ""
+        info.overlay.style.backgroundColor = "#00000000"
+    }
+}
 
 const canvas = document.querySelector("canvas")
 const context = canvas.getContext("2d")
 
-canvas.width = 512
-canvas.height = 512
+resize()
 
-const foodColor = "#00FF59"
-const snakeColor = "#FF00A6"
-const backgroundColor = "#303030"
 
-const gridDimensions = { x: 24, y: 24 }
-
-let multiplier = canvas.width / gridDimensions.x
-
-let food = new Food(foodColor, gridDimensions)
-let snake = new Snake(snakeColor, gridDimensions)
-
+/**
+ * GAME SETUP
+ */
 let paused = false
 
-const updateBoard = () => {
-    if (snake.dead == false) {
-        snake.update(food)
-    }
-
-    scoreParagraph.innerText = food.eatenCount
-
-    background(canvas, context, backgroundColor)
-
-    snake.draw(context, multiplier)
-    food.draw(context, multiplier)
-}
-
-const sizeCanvas = () => {
-    const size = Math.min(
-        window.innerWidth * 0.65,
-        window.innerHeight * 0.65
-    )
-
-    canvas.width = size
-    canvas.height = size
-
-    multiplier = canvas.width / gridDimensions.x
-
-    updateBoard()
-}
+const borders = { x: { min: 0, max: 24 }, y: { min: 0, max: 24 } }
 
 const restart = () => {
-    food = new Food(foodColor, gridDimensions)
-    snake = new Snake(snakeColor, gridDimensions)
+    snake = new Snake()
+    snakeFood = new SnakeFood()
+
+    snake.informBorders(borders)
+    snakeFood.informBorders(borders)
+
+    snakeFood.teleport(snake)
 }
 
-sizeCanvas()
+// elemental setup
+const keys = new ArrowKeys()
 
-window.addEventListener("keydown", (event) => {
-    if (event.code == "ArrowUp") { snake.changeDirection({ x: 0, y: -1 }) }
-    else if (event.code == "ArrowDown") { snake.changeDirection({ x: 0, y: 1 }) }
-    else if (event.code == "ArrowLeft") { snake.changeDirection({ x: -1, y: 0 }) }
-    else if (event.code == "ArrowRight") { snake.changeDirection({ x: 1, y: 0 }) }
-
-    else if (event.code == "KeyP") {
+document.addEventListener("keydown", (event) => {
+    if (snake.dead == true) { restart() }
+    else if (event.code == "Space") {
         if (paused == true) {
             paused = false
+            info.empty()
         }
-        else {
+        else if (paused == false) {
             paused = true
+            info.pause()
         }
     }
-
-    else if (event.code == "KeyR") {
-        restart()
+    else if (paused == false) {
+        const direction = keys.keydown(event)
+        snake.changeDirection(direction)
     }
 })
 
 window.addEventListener("resize", () => {
-    sizeCanvas()
+    resize()
 })
 
-restartButton.addEventListener("click", restart)
+// character setup
+let snake = new Snake()
+let snakeFood = new SnakeFood()
+
+snake.informBorders(borders)
+snakeFood.informBorders(borders)
+
+snakeFood.teleport(snake)
+
+/**
+ * GAME LOOP
+ */
+const tick = 100
 
 setInterval(() => {
-    if (paused == false) {
-        updateBoard()
+    if (paused == false && snake.dead == false) { snake.updatePosition(snakeFood) }
+    
+    if (snake.dead == true && info.title.innerText != "you died") {
+        info.death()
     }
-}, 150)
+    else if (snake.dead == false && info.title.innerText == "you died") {
+        info.empty()
+    }
+
+    drawBackground(canvas, context, "#101010")
+    snake.draw(canvas, context)
+    snakeFood.draw(canvas, context)
+}, tick)

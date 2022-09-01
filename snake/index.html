@@ -4,38 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;900&display=swap" rel="stylesheet">
- 
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../style/header.css">
+    <title>Arcade</title>
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-    <header class="header">
-        <a href="../"><img src="../images/face.png" alt="" class="header__img"></a>
-        <h1 class="header__text">Arcade</h1>
-    </header>
-
     <canvas></canvas>
 
-    <div class="game">
-        <div>
-            <p>press p to pause</p>
-        </div>
-        
-        <div class="container">
-            <button id="restart">press r or click here to restart</button>
-        </div>
-
-        <div class="container">
-            <label for="score">score: </label>
-            <p id="score">0</p>
-        </div>
-    </div>
-
     <script src="./script.js" type="module"></script>
+
+    <div class="overlay"></div>
+
+    <div class="info">
+        <h1 class="info__title"></h1>
+        <h2 class="info__subtitle"></h2>
+    </div>
 </body>
 </html>
