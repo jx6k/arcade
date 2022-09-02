@@ -18,7 +18,7 @@ const resize = () => {
     canvas.height = size
 }
 
-const score = document.querySelector(".header--score")
+const score = document.querySelector(".header__item--score")
 
 const info = {
     overlay: document.querySelector(".overlay"),
@@ -101,7 +101,7 @@ snakeFood.teleport(snake)
 /**
  * GAME LOOP
  */
-const tick = 100
+let tick = 110
 
 setInterval(() => {
     if (paused == false && snake.dead == false) { snake.updatePosition(snakeFood) }
@@ -112,6 +112,8 @@ setInterval(() => {
     if (score.innerText != "score: " + snake.score) {
         score.innerText = "score: " + snake.score
     }
+
+    tick -= 1
 
     drawBackground(canvas, context, "#101010")
     snake.draw(canvas, context)

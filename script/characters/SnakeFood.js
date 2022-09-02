@@ -7,7 +7,7 @@ class SnakeFood {
             y: 0
         }
 
-        this.color = "#FFD000"
+        this.color = "#7B00FF"
     }
 
     informBorders(borders) {
